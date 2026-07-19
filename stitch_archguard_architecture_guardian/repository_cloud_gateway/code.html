@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ArchGuard - Repository Detail</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "bg-base": "#f9f9f9",
+                        "on-primary-container": "#111827",
+                        "surface-tint": "#475569",
+                        "surface-2": "#e3e3e3",
+                        "primary": "#475569",
+                        "secondary-container": "#e2e8f0",
+                        "secondary": "#64748b",
+                        "surface-container-low": "#f3f3f4",
+                        "surface-dim": "#dadada",
+                        "on-secondary-fixed": "#0f172a",
+                        "border-subtle": "#e2e8f0",
+                        "inverse-primary": "#f8fafc",
+                        "on-surface-variant": "#475569",
+                        "on-secondary-container": "#0f172a",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#410002",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#f1f5f9",
+                        "on-background": "#1e293b",
+                        "primary-fixed": "#f1f5f9",
+                        "on-tertiary-fixed": "#1e293b",
+                        "on-primary-fixed-variant": "#334155",
+                        "surface-bright": "#f9f9f9",
+                        "surface-1": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "critical": "#ef4444",
+                        "surface-variant": "#e2e8f0",
+                        "surface-container-high": "#e8e8e8",
+                        "background": "#f9f9f9",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#eeeeee",
+                        "primary-fixed-dim": "#e2e8f0",
+                        "on-primary-fixed": "#0f172a",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-container": "#e2e8f0",
+                        "outline": "#64748b",
+                        "tertiary-fixed-dim": "#e2e8f0",
+                        "info": "#64748b",
+                        "outline-variant": "#cbd5e1",
+                        "tertiary": "#64748b",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#0f172a",
+                        "secondary-fixed-dim": "#cbd5e1",
+                        "surface-container-highest": "#e3e3e3",
+                        "on-surface": "#1e293b",
+                        "error": "#ba1a1a",
+                        "primary-container": "#f1f5f9",
+                        "surface-3": "#d8d8d8",
+                        "inverse-surface": "#1e293b",
+                        "tertiary-fixed": "#f1f5f9",
+                        "on-secondary-fixed-variant": "#334155",
+                        "surface": "#f9f9f9",
+                        "warning": "#f59e0b",
+                        "on-tertiary-fixed-variant": "#334155",
+                        "secondary-fixed": "#e2e8f0"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "4xl": "96px",
+                        "2xl": "48px",
+                        "sm": "8px",
+                        "xl": "32px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "3xl": "64px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter", "sans-serif"],
+                        "headline-xl": ["Inter", "sans-serif"],
+                        "label-sm": ["Inter", "sans-serif"],
+                        "body-lg": ["Inter", "sans-serif"],
+                        "body-sm": ["Inter", "sans-serif"],
+                        "code-sm": ["JetBrains Mono", "monospace"],
+                        "headline-md": ["Inter", "sans-serif"],
+                        "code-md": ["JetBrains Mono", "monospace"],
+                        "body-md": ["Inter", "sans-serif"],
+                        "headline-lg": ["Inter", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "code-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "code-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .bg-grid-pattern {
+            background-image: radial-gradient(circle at 1px 1px, #cbd5e1 1px, transparent 0);
+            background-size: 32px 32px;
+        }
+    </style>
+</head>
+<body class="bg-bg-base text-on-surface antialiased min-h-screen flex">
+<!-- Shared Component: SideNavBar -->
+<nav class="bg-surface-1 h-screen w-64 fixed left-0 top-0 border-r border-border-subtle flex flex-col h-full py-lg px-md z-50">
+<!-- Header -->
+<div class="mb-xl px-sm flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary text-[28px]">hexagon</span>
+<div>
+<h1 class="text-headline-md font-headline-md font-bold text-primary leading-none mb-1">ArchGuard</h1>
+<p class="text-label-sm font-label-sm text-info leading-none">Staff Engineer AI</p>
+</div>
+</div>
+<!-- CTA -->
+<div class="px-sm mb-lg">
+<button class="w-full bg-primary text-on-primary py-sm px-md rounded text-label-md font-label-md hover:bg-primary-fixed-dim transition-colors flex justify-center items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">add</span> New Analysis
+            </button>
+</div>
+<!-- Main Navigation -->
+<ul class="flex-1 flex flex-col gap-xs">
+<li>
+<a class="flex items-center gap-sm px-md py-sm rounded-md text-on-surface-variant hover:bg-surface-2 transition-colors scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">account_tree</span>
+<span class="text-label-md font-label-md">Architecture</span>
+</a>
+</li>
+<!-- Active Tab: Repositories -->
+<li>
+<a class="flex items-center gap-sm px-md py-sm rounded-md text-primary font-bold border-l-4 border-primary bg-primary-container scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">folder_open</span>
+<span class="text-label-md font-label-md">Repositories</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm px-md py-sm rounded-md text-on-surface-variant hover:bg-surface-2 transition-colors scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">shield_lock</span>
+<span class="text-label-md font-label-md">Security</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm px-md py-sm rounded-md text-on-surface-variant hover:bg-surface-2 transition-colors scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">extension</span>
+<span class="text-label-md font-label-md">Integrations</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm px-md py-sm rounded-md text-on-surface-variant hover:bg-surface-2 transition-colors scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-label-md font-label-md">Settings</span>
+</a>
+</li>
+</ul>
+<!-- Footer Navigation -->
+<ul class="flex flex-col gap-xs mt-auto pt-md border-t border-border-subtle">
+<li>
+<a class="flex items-center gap-sm px-md py-sm rounded-md text-on-surface-variant hover:bg-surface-2 transition-colors" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="text-label-md font-label-md">Documentation</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm px-md py-sm rounded-md text-on-surface-variant hover:bg-surface-2 transition-colors" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="text-label-md font-label-md">Support</span>
+</a>
+</li>
+</ul>
+</nav>
+<!-- Main Content Area -->
+<main class="ml-64 flex-1 p-xl flex flex-col min-h-screen">
+<!-- Page Header -->
+<header class="flex justify-between items-end pb-lg border-b border-border-subtle mb-lg">
+<div>
+<div class="flex items-center gap-sm text-label-sm font-label-sm text-info mb-sm">
+<a class="hover:text-on-surface transition-colors" href="#">Repositories</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-on-surface">cloud-gateway</span>
+</div>
+<div class="flex items-center gap-md">
+<h2 class="text-headline-lg font-headline-lg text-on-surface">cloud-gateway</h2>
+<span class="bg-surface-1 border border-border-subtle text-on-surface px-sm py-[2px] rounded-full text-label-sm font-label-sm flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> Active
+                    </span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-xs max-w-2xl">Main ingress controller and API gateway routing traffic to internal microservices. Handles authentication termination and rate limiting.</p>
+</div>
+<div class="flex gap-sm">
+<button class="px-md py-sm border-[1.5px] border-border-subtle text-on-surface rounded text-label-md font-label-md hover:bg-surface-1 transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">sync</span> Sync Metadata
+                </button>
+</div>
+</header>
+<!-- In-page Navigation Tabs -->
+<div class="flex gap-lg border-b border-border-subtle mb-lg">
+<a class="text-label-md font-label-md text-primary border-b-2 border-primary pb-sm px-xs relative top-[1px]" href="#">Overview</a>
+<a class="text-label-md font-label-md text-on-surface-variant hover:text-on-surface pb-sm px-xs transition-colors" href="#">Findings</a>
+<a class="text-label-md font-label-md text-on-surface-variant hover:text-on-surface pb-sm px-xs transition-colors flex items-center gap-xs" href="#">
+                PRs <span class="bg-surface-container-high text-on-surface text-[10px] px-[6px] py-[2px] rounded-full leading-none">8</span>
+</a>
+<a class="text-label-md font-label-md text-on-surface-variant hover:text-on-surface pb-sm px-xs transition-colors" href="#">Policy</a>
+<a class="text-label-md font-label-md text-on-surface-variant hover:text-on-surface pb-sm px-xs transition-colors" href="#">Graph</a>
+</div>
+<!-- Dashboard Bento Grid -->
+<div class="grid grid-cols-12 gap-lg flex-1">
+<!-- Left Column: Metrics (4 cols) -->
+<div class="col-span-12 xl:col-span-4 flex flex-col gap-lg">
+<!-- Security Score Card -->
+<div class="bg-surface-1 border border-border-subtle rounded-lg p-lg relative overflow-hidden group">
+<div class="absolute -top-16 -right-16 w-40 h-40 bg-secondary/10 rounded-full blur-3xl group-hover:bg-secondary/20 transition-all duration-500"></div>
+<div class="flex justify-between items-start mb-md relative z-10">
+<h3 class="text-label-md font-label-md text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">security</span> Security Score
+                        </h3>
+<span class="material-symbols-outlined text-info cursor-pointer hover:text-on-surface transition-colors">more_horiz</span>
+</div>
+<div class="flex items-end gap-xs relative z-10 mb-md">
+<span class="text-headline-xl font-headline-xl text-secondary leading-none">84</span>
+<span class="text-body-md font-body-md text-on-surface-variant pb-[2px]">/100</span>
+</div>
+<div class="relative z-10">
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden mb-xs">
+<div class="bg-secondary h-full rounded-full" style="width: 84%;"></div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-label-sm font-label-sm text-secondary bg-secondary/10 px-xs py-[2px] rounded">Grade B+</span>
+<span class="text-label-sm font-label-sm text-info">Top 15% across org</span>
+</div>
+</div>
+</div>
+<!-- Tech Debt Score Card -->
+<div class="bg-surface-1 border border-border-subtle rounded-lg p-lg relative overflow-hidden group">
+<div class="absolute -bottom-16 -left-16 w-40 h-40 bg-warning/10 rounded-full blur-3xl group-hover:bg-warning/20 transition-all duration-500"></div>
+<div class="flex justify-between items-start mb-md relative z-10">
+<h3 class="text-label-md font-label-md text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">account_balance_wallet</span> Debt Score
+                        </h3>
+<span class="material-symbols-outlined text-info cursor-pointer hover:text-on-surface transition-colors">more_horiz</span>
+</div>
+<div class="flex items-end gap-xs relative z-10 mb-md">
+<span class="text-headline-xl font-headline-xl text-warning leading-none">62</span>
+<span class="text-body-md font-body-md text-on-surface-variant pb-[2px]">/100</span>
+</div>
+<div class="relative z-10">
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden mb-xs">
+<div class="bg-warning h-full rounded-full" style="width: 62%;"></div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-label-sm font-label-sm text-warning bg-warning/10 px-xs py-[2px] rounded">Needs Review</span>
+<span class="text-label-sm font-label-sm text-info flex items-center gap-[2px]">
+<span class="material-symbols-outlined text-[14px] text-critical">arrow_downward</span> -5 pts
+                            </span>
+</div>
+</div>
+</div>
+<!-- Repo Meta Stats -->
+<div class="grid grid-cols-2 gap-md">
+<div class="bg-surface-1 border border-border-subtle rounded-lg p-md">
+<p class="text-label-sm font-label-sm text-on-surface-variant mb-xs">Code Size</p>
+<p class="text-headline-md font-headline-md text-on-surface font-code-md">1.2M <span class="text-label-sm font-label-sm text-info">LoC</span></p>
+</div>
+<div class="bg-surface-1 border border-border-subtle rounded-lg p-md">
+<p class="text-label-sm font-label-sm text-on-surface-variant mb-xs">Contributors</p>
+<div class="flex items-center gap-sm">
+<p class="text-headline-md font-headline-md text-on-surface font-code-md">24</p>
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-surface-container-high border border-border-subtle flex items-center justify-center text-[10px] text-on-surface">JD</div>
+<div class="w-6 h-6 rounded-full bg-surface-container-low border border-border-subtle flex items-center justify-center text-[10px] text-on-surface">AK</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Interactive Dependency Graph (8 cols) -->
+<div class="col-span-12 xl:col-span-8 bg-surface-1 border border-border-subtle rounded-lg flex flex-col overflow-hidden relative min-h-[500px]">
+<!-- Graph Toolbar -->
+<div class="bg-surface-1/90 backdrop-blur border-b border-border-subtle p-sm flex justify-between items-center absolute top-0 w-full z-20">
+<div class="flex items-center gap-md px-sm">
+<span class="text-label-sm font-label-sm text-on-surface-variant font-bold">Dependency Graph</span>
+<div class="h-4 w-px bg-border-subtle"></div>
+<div class="flex gap-md">
+<div class="flex items-center gap-xs text-label-sm font-label-sm text-info">
+<span class="w-2.5 h-2.5 rounded-sm bg-primary-container border border-primary"></span> Service
+                            </div>
+<div class="flex items-center gap-xs text-label-sm font-label-sm text-info">
+<span class="w-2.5 h-2.5 rounded-sm bg-surface-container-high border border-outline-variant"></span> Module
+                            </div>
+<div class="flex items-center gap-xs text-label-sm font-label-sm text-info">
+<span class="w-2.5 h-2.5 rounded-sm bg-secondary-container border border-secondary"></span> External
+                            </div>
+</div>
+</div>
+<div class="flex gap-xs">
+<button class="w-8 h-8 rounded flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[18px]">zoom_in</span>
+</button>
+<button class="w-8 h-8 rounded flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[18px]">zoom_out</span>
+</button>
+<button class="w-8 h-8 rounded flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[18px]">fit_screen</span>
+</button>
+</div>
+</div>
+<!-- Canvas Area -->
+<div class="flex-1 bg-grid-pattern relative mt-12 overflow-hidden cursor-move">
+<!-- Edges (SVG overlay) -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none">
+<!-- cloud-gateway to auth-middleware -->
+<path d="M 250 200 C 350 200, 350 120, 450 120" fill="none" stroke="#64748b" stroke-width="1.5"></path>
+<!-- cloud-gateway to rate-limiter -->
+<path d="M 250 200 L 450 280" fill="none" stroke="#64748b" stroke-width="1.5"></path>
+<!-- auth-middleware to redis (external) -->
+<path d="M 600 120 L 750 120" fill="none" stroke="#64748b" stroke-dasharray="4" stroke-width="1.5"></path>
+<!-- rate-limiter to legacy-auth (problematic) -->
+<path class="opacity-80" d="M 600 280 C 680 280, 680 350, 750 350" fill="none" stroke="#ef4444" stroke-dasharray="4" stroke-width="1.5"></path>
+<!-- warning edge highlight -->
+<circle cx="675" cy="315" fill="#ef4444" r="4"></circle>
+</svg>
+<!-- Nodes -->
+<!-- Central Node: cloud-gateway -->
+<div class="absolute left-[80px] top-[170px] bg-primary-container border-[1.5px] border-primary rounded-lg p-sm px-md flex items-center gap-sm shadow-sm cursor-pointer hover:-translate-y-0.5 transition-transform z-10 w-[170px]">
+<span class="material-symbols-outlined text-on-primary-container text-[20px]">hub</span>
+<div>
+<p class="text-label-md font-label-md text-on-primary-container leading-tight">cloud-gateway</p>
+<p class="text-[10px] text-primary font-code-sm uppercase tracking-wider mt-[2px]">Service • Target</p>
+</div>
+</div>
+<!-- Module Node: auth-middleware -->
+<div class="absolute left-[450px] top-[100px] bg-surface-1 border-[1.5px] border-outline-variant rounded-lg p-sm px-md flex items-center gap-sm cursor-pointer hover:border-outline transition-all z-10 w-[150px]">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">verified_user</span>
+<div>
+<p class="text-label-sm font-label-sm text-on-surface leading-tight">auth-middleware</p>
+<p class="text-[10px] text-info font-code-sm uppercase tracking-wider mt-[2px]">Module</p>
+</div>
+</div>
+<!-- Module Node: rate-limiter -->
+<div class="absolute left-[450px] top-[260px] bg-surface-1 border-[1.5px] border-outline-variant rounded-lg p-sm px-md flex items-center gap-sm cursor-pointer hover:border-outline transition-all z-10 w-[150px]">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">speed</span>
+<div>
+<p class="text-label-sm font-label-sm text-on-surface leading-tight">rate-limiter</p>
+<p class="text-[10px] text-info font-code-sm uppercase tracking-wider mt-[2px]">Module</p>
+</div>
+</div>
+<!-- External Node: Redis Cache -->
+<div class="absolute left-[750px] top-[100px] bg-secondary-container border-[1.5px] border-secondary rounded-lg p-sm px-md flex items-center gap-sm shadow-sm cursor-pointer hover:-translate-y-0.5 transition-transform z-10 w-[160px]">
+<span class="material-symbols-outlined text-on-secondary-container text-[18px]">memory</span>
+<div>
+<p class="text-label-sm font-label-sm text-on-secondary-container leading-tight">redis-cache</p>
+<p class="text-[10px] text-secondary font-code-sm uppercase tracking-wider mt-[2px]">External • AWS</p>
+</div>
+</div>
+<!-- External Node: Legacy Auth (Warning State) -->
+<div class="absolute left-[750px] top-[330px] bg-surface-container-low border-[1.5px] border-critical rounded-lg p-sm px-md flex items-center gap-sm shadow-sm cursor-pointer hover:-translate-y-0.5 transition-transform z-10 w-[160px] relative">
+<div class="absolute -top-2 -right-2 w-4 h-4 bg-critical rounded-full border-2 border-surface-1 flex items-center justify-center">
+<span class="material-symbols-outlined text-[10px] text-on-error font-bold">priority_high</span>
+</div>
+<span class="material-symbols-outlined text-critical text-[18px]">api</span>
+<div>
+<p class="text-label-sm font-label-sm text-on-surface leading-tight">legacy-auth-v1</p>
+<p class="text-[10px] text-critical font-code-sm uppercase tracking-wider mt-[2px]">Deprecated API</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

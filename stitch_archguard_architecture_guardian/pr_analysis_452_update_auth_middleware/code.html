@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+
+<html class="" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ArchGuard - PR Analysis Detail</title>
+<!-- Tailwind Setup -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                            "bg-base": "#f9f9f9",
+                            "on-primary-container": "#181b21",
+                            "surface-tint": "#475569",
+                            "surface-2": "#f3f3f4",
+                            "primary": "#475569",
+                            "secondary-container": "#eaebed",
+                            "secondary": "#5e636a",
+                            "surface-container-low": "#f3f3f4",
+                            "surface-dim": "#dadada",
+                            "on-secondary-fixed": "#161b21",
+                            "border-subtle": "#e4e4e6",
+                            "inverse-primary": "#a6b6ce",
+                            "on-surface-variant": "#43474d",
+                            "on-secondary-container": "#191c22",
+                            "on-secondary": "#ffffff",
+                            "on-error-container": "#410002",
+                            "on-error": "#ffffff",
+                            "inverse-on-surface": "#f1f0f4",
+                            "on-background": "#1a1b1e",
+                            "primary-fixed": "#cfddec",
+                            "on-tertiary-fixed": "#251431",
+                            "on-primary-fixed-variant": "#2f3e51",
+                            "surface-bright": "#f9f9f9",
+                            "surface-1": "#ffffff",
+                            "on-primary": "#ffffff",
+                            "critical": "#ba1a1a",
+                            "surface-variant": "#e0e2e8",
+                            "surface-container-high": "#e8e8e9",
+                            "background": "#f9f9f9",
+                            "on-tertiary": "#ffffff",
+                            "surface-container": "#eeeeef",
+                            "primary-fixed-dim": "#a6b6ce",
+                            "on-primary-fixed": "#00182c",
+                            "surface-container-lowest": "#ffffff",
+                            "tertiary-container": "#f1daff",
+                            "outline": "#73777d",
+                            "tertiary-fixed-dim": "#d2bee5",
+                            "info": "#475569",
+                            "outline-variant": "#c3c6cd",
+                            "tertiary": "#655577",
+                            "error-container": "#ffdad6",
+                            "on-tertiary-container": "#21102d",
+                            "secondary-fixed-dim": "#c2c7ce",
+                            "surface-container-highest": "#e2e2e3",
+                            "on-surface": "#1a1b1e",
+                            "error": "#ba1a1a",
+                            "primary-container": "#cfddec",
+                            "surface-3": "#eeeeef",
+                            "inverse-surface": "#2f3033",
+                            "tertiary-fixed": "#eedbff",
+                            "on-secondary-fixed-variant": "#43474d",
+                            "surface": "#f9f9f9",
+                            "warning": "#eab308",
+                            "on-tertiary-fixed-variant": "#4d3d5f",
+                            "secondary-fixed": "#dee3eb"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "0.5rem",
+                            "lg": "0.5rem",
+                            "xl": "0.75rem",
+                            "full": "9999px"
+                    },
+                    "spacing": {
+                            "xs": "4px",
+                            "4xl": "96px",
+                            "2xl": "48px",
+                            "sm": "8px",
+                            "xl": "32px",
+                            "md": "16px",
+                            "lg": "24px",
+                            "3xl": "64px"
+                    },
+                    "fontFamily": {
+                            "label-md": ["Geist", "sans-serif"],
+                            "headline-xl": ["Geist", "sans-serif"],
+                            "label-sm": ["Geist", "sans-serif"],
+                            "body-lg": ["Geist", "sans-serif"],
+                            "body-sm": ["Geist", "sans-serif"],
+                            "code-sm": ["JetBrains Mono", "monospace"],
+                            "headline-md": ["Geist", "sans-serif"],
+                            "code-md": ["JetBrains Mono", "monospace"],
+                            "body-md": ["Geist", "sans-serif"],
+                            "headline-lg": ["Geist", "sans-serif"]
+                    },
+                    "fontSize": {
+                            "label-md": ["14px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                            "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                            "label-sm": ["12px", {"lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "500"}],
+                            "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                            "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                            "code-sm": ["12px", {"lineHeight": "18px", "fontWeight": "400"}],
+                            "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                            "code-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                            "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                            "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<!-- Google Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        /* Custom scrollbar for dense tech aesthetic */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #f9f9f9; }
+        ::-webkit-scrollbar-thumb { background: #e4e4e6; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+        
+        .code-grid { display: grid; grid-template-columns: 40px 40px 1fr; gap: 16px; }
+    </style>
+</head>
+<body class="bg-bg-base text-on-surface font-body-md h-screen w-full overflow-hidden flex flex-col md:flex-row antialiased selection:bg-primary selection:text-bg-base">
+<!-- 
+        ========================================================================
+        SHARED COMPONENT: SideNavBar
+        Source: JSON Specification
+        Semantic Mapping: PRs belong to Repositories. 'Repositories' is active.
+        ========================================================================
+    -->
+<aside class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 bg-surface-1 dark:bg-surface-1 border-r border-border-subtle py-lg px-md z-50">
+<!-- Brand Header -->
+<div class="mb-2xl flex items-center gap-md">
+<div class="w-10 h-10 rounded bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+<div>
+<h1 class="text-headline-md font-headline-md font-bold text-primary dark:text-primary leading-none">ArchGuard</h1>
+<p class="text-label-sm font-label-sm text-on-surface-variant mt-xs uppercase tracking-wider">Staff Engineer AI</p>
+</div>
+</div>
+<!-- CTA -->
+<button class="w-full bg-primary text-bg-base text-label-md font-label-md py-sm px-md rounded-DEFAULT hover:bg-surface-tint transition-colors mb-lg flex items-center justify-center gap-sm shadow-sm">
+<span class="material-symbols-outlined text-[18px]">add</span>
+            New Analysis
+        </button>
+<!-- Main Navigation -->
+<nav class="flex-1 space-y-xs">
+<a class="flex items-center gap-md px-md py-sm rounded-DEFAULT text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-2 dark:hover:bg-surface-2 transition-colors scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined text-[20px]">account_tree</span>
+<span class="text-label-md font-label-md">Architecture</span>
+</a>
+<!-- ACTIVE TAB: Repositories -->
+<a class="flex items-center gap-md px-md py-sm rounded-DEFAULT bg-surface-2 text-primary dark:text-primary font-bold border-r-2 border-primary scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">folder_open</span>
+<span class="text-label-md font-label-md">Repositories</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-DEFAULT text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-2 dark:hover:bg-surface-2 transition-colors scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined text-[20px]">shield_lock</span>
+<span class="text-label-md font-label-md">Security</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-DEFAULT text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-2 dark:hover:bg-surface-2 transition-colors scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined text-[20px]">extension</span>
+<span class="text-label-md font-label-md">Integrations</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-DEFAULT text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-2 dark:hover:bg-surface-2 transition-colors scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="text-label-md font-label-md">Settings</span>
+</a>
+</nav>
+<!-- Footer Navigation -->
+<div class="mt-auto pt-lg border-t border-border-subtle space-y-xs">
+<a class="flex items-center gap-md px-md py-sm rounded-DEFAULT text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-2 dark:hover:bg-surface-2 transition-colors scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined text-[20px]">description</span>
+<span class="text-label-md font-label-md">Documentation</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-DEFAULT text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-2 dark:hover:bg-surface-2 transition-colors scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined text-[20px]">help</span>
+<span class="text-label-md font-label-md">Support</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<main class="flex-1 md:ml-64 relative flex flex-col h-screen overflow-hidden bg-bg-base">
+<!-- 
+            ========================================================================
+            SHARED COMPONENT: TopNavBar
+            Source: JSON Specification
+            Semantic Mapping: Explicit 'Pull Requests' match.
+            ========================================================================
+        -->
+<header class="hidden md:flex items-center justify-between px-xl w-full z-40 fixed top-0 right-0 w-[calc(100%-16rem)] h-16 bg-bg-base dark:bg-bg-base border-b border-border-subtle transition-all duration-200">
+<!-- Left: Context / Breadcrumbs (Replacing Product Name since SideNav has it, adapting structure) -->
+<div class="flex items-center gap-md">
+<div class="flex space-x-lg h-full items-end pt-2">
+<a class="text-label-sm font-label-sm text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface transition-all duration-200 pb-xs" href="#">Dashboard</a>
+<!-- ACTIVE TAB -->
+<a class="text-label-sm font-label-sm text-primary dark:text-primary border-b-2 border-primary pb-xs transition-all duration-200" href="#">Pull Requests</a>
+<a class="text-label-sm font-label-sm text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface transition-all duration-200 pb-xs" href="#">Metrics</a>
+</div>
+</div>
+<!-- Right: Actions -->
+<div class="flex items-center gap-lg">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-info text-[18px]">search</span>
+<input class="bg-surface-3 border border-border-subtle rounded-full text-body-sm font-body-sm text-on-surface py-xs pl-xl pr-md w-64 focus:outline-none focus:border-primary transition-colors" placeholder="Search components..." type="text"/>
+</div>
+<button class="bg-transparent border border-border-subtle text-primary hover:bg-surface-2 px-md py-xs rounded-DEFAULT text-label-sm font-label-sm transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">play_arrow</span>
+                    Run Scan
+                </button>
+<div class="flex items-center gap-md text-on-surface-variant border-l border-border-subtle pl-md">
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">notifications</span></button>
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">account_circle</span></button>
+</div>
+</div>
+</header>
+<!-- Scrollable Content Canvas -->
+<div class="flex-1 overflow-y-auto pt-16 md:pt-20 px-md md:px-xl pb-3xl space-y-lg scroll-smooth">
+<!-- Top Section: Header & Deltas -->
+<div class="bg-surface-1 border border-border-subtle rounded-lg p-lg shadow-sm">
+<!-- Title Row -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-md mb-lg border-b border-border-subtle pb-md">
+<div>
+<div class="flex items-center gap-sm mb-xs">
+<span class="text-label-sm font-label-sm text-info font-code-sm">arch-core/main</span>
+<span class="material-symbols-outlined text-border-subtle text-[14px]">arrow_forward</span>
+<span class="text-label-sm font-label-sm text-primary font-code-sm bg-surface-2 px-sm py-[2px] rounded border border-border-subtle">feature/auth-middleware-v2</span>
+</div>
+<h2 class="text-headline-lg font-headline-lg text-on-surface flex items-center gap-md">
+                            PR #452: Update Auth Middleware
+                        </h2>
+</div>
+<div class="flex items-center gap-md">
+<!-- Critical Status Badge -->
+<div class="flex items-center gap-xs bg-error-container border border-critical text-critical px-md py-xs rounded-full shadow-sm">
+<span class="material-symbols-outlined text-[16px] font-bold" style="font-variation-settings: 'FILL' 1;">block</span>
+<span class="text-label-md font-label-md uppercase tracking-wider font-bold">Block</span>
+</div>
+</div>
+</div>
+<!-- Delta Summary Row (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<!-- Metric 1: Security -->
+<div class="bg-surface-2 rounded-DEFAULT p-md border-l-4 border-critical relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-sm opacity-20 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-critical text-[48px]">warning</span>
+</div>
+<h3 class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-widest mb-xs">Security Delta</h3>
+<div class="flex items-baseline gap-sm">
+<span class="text-headline-md font-headline-md text-critical">+2</span>
+<span class="text-body-sm font-body-sm text-critical">Critical Findings</span>
+</div>
+<p class="text-code-sm font-code-sm text-info mt-sm">CVE-2023-4528 introduced in deps.</p>
+</div>
+<!-- Metric 2: Debt -->
+<div class="bg-surface-2 rounded-DEFAULT p-md border-l-4 border-secondary relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-sm opacity-20 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-secondary text-[48px]">trending_down</span>
+</div>
+<h3 class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-widest mb-xs">Tech Debt Delta</h3>
+<div class="flex items-baseline gap-sm">
+<span class="text-headline-md font-headline-md text-secondary">-5%</span>
+<span class="text-body-sm font-body-sm text-secondary">Complexity Score</span>
+</div>
+<p class="text-code-sm font-code-sm text-info mt-sm">Refactored JWT validation logic.</p>
+</div>
+<!-- Metric 3: Cost -->
+<div class="bg-surface-2 rounded-DEFAULT p-md border border-border-subtle relative overflow-hidden">
+<h3 class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-widest mb-xs">Infra Cost Delta</h3>
+<div class="flex items-baseline gap-sm">
+<span class="text-headline-md font-headline-md text-on-surface">$0</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">/mo est. impact</span>
+</div>
+<p class="text-code-sm font-code-sm text-info mt-sm">No new cloud resources detected.</p>
+</div>
+</div>
+</div>
+<!-- Middle Section: Graph & Findings Split -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg h-[500px]">
+<!-- Subgraph View (Canvas / Glassmorphism) -->
+<div class="lg:col-span-7 bg-surface-1 border border-border-subtle rounded-lg flex flex-col overflow-hidden relative group">
+<!-- Glass Header -->
+<div class="absolute top-0 left-0 w-full bg-surface-1/80 backdrop-blur-sm border-b border-border-subtle p-md z-10 flex justify-between items-center">
+<h3 class="text-label-md font-label-md text-primary flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">hub</span>
+                            Affected Subgraph
+                        </h3>
+<div class="flex gap-xs">
+<button class="p-xs hover:bg-surface-2 rounded text-info hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[16px]">zoom_in</span></button>
+<button class="p-xs hover:bg-surface-2 rounded text-info hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[16px]">zoom_out</span></button>
+</div>
+</div>
+<!-- Graph Area (Simulated Canvas) -->
+<div class="flex-1 relative bg-surface-container overflow-hidden" style="background-image: radial-gradient(#e4e4e6 1px, transparent 1px); background-size: 24px 24px;">
+<!-- Connection Lines (Simulated via SVG overlay for simplicity in HTML output) -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none z-0" style="stroke: #a6b6ce; stroke-width: 1.5; fill: none;">
+<path d="M 150 200 C 250 200, 250 120, 350 120"></path>
+<path d="M 150 200 C 250 200, 250 280, 350 280"></path>
+<path d="M 350 280 L 500 280"></path>
+<!-- Highlighted path -->
+<path d="M 350 120 C 450 120, 450 200, 550 200" style="stroke: #ba1a1a; stroke-dasharray: 4; animation: dash 20s linear infinite;"></path>
+</svg>
+<!-- Nodes -->
+<!-- Origin Node -->
+<div class="absolute left-[50px] top-[170px] bg-surface-1 border border-border-subtle rounded px-md py-sm z-10 shadow-sm flex items-center gap-sm">
+<span class="material-symbols-outlined text-info text-[16px]">public</span>
+<span class="text-code-sm font-code-sm text-on-surface">API Gateway</span>
+</div>
+<!-- Touched Node (Glowing) -->
+<div class="absolute left-[250px] top-[90px] bg-surface-1 border border-primary rounded px-md py-sm z-10 ring-2 ring-primary/20 shadow-md flex flex-col gap-xs cursor-pointer hover:scale-105 transition-transform">
+<div class="flex items-center justify-between gap-md">
+<span class="text-code-sm font-code-sm text-primary font-bold">AuthMiddleware</span>
+<span class="w-2 h-2 rounded-full bg-critical animate-pulse"></span>
+</div>
+<span class="text-[10px] text-info font-code-sm">src/middleware/auth.ts</span>
+</div>
+<!-- Downstream Node 1 -->
+<div class="absolute left-[250px] top-[250px] bg-surface-1 border border-border-subtle rounded px-md py-sm z-10 shadow-sm flex flex-col gap-xs opacity-70">
+<span class="text-code-sm font-code-sm text-on-surface-variant">UserService</span>
+</div>
+<!-- Affected DB Node (Critical highlight) -->
+<div class="absolute left-[470px] top-[170px] bg-error-container border-2 border-critical rounded px-md py-sm z-10 shadow-md flex flex-col gap-xs">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-critical text-[16px]">database</span>
+<span class="text-code-sm font-code-sm text-critical font-bold">SessionDB</span>
+</div>
+<span class="text-[10px] text-critical font-code-sm uppercase">Unsafe Query</span>
+</div>
+</div>
+</div>
+<!-- Findings Panel -->
+<div class="lg:col-span-5 bg-surface-1 border border-border-subtle rounded-lg flex flex-col overflow-hidden">
+<div class="border-b border-border-subtle p-md bg-surface-2">
+<h3 class="text-label-md font-label-md text-on-surface flex items-center justify-between">
+<span>Analysis Findings</span>
+<span class="bg-surface-3 text-info px-xs py-[2px] rounded text-[10px]">3 Issues</span>
+</h3>
+</div>
+<div class="flex-1 overflow-y-auto p-md space-y-md">
+<!-- Critical Finding Card -->
+<div class="bg-surface-1 rounded border border-border-subtle border-l-4 border-l-critical p-md flex flex-col gap-sm shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-xs text-critical">
+<span class="material-symbols-outlined text-[18px]">gpp_bad</span>
+<span class="text-label-sm font-label-sm font-bold">SQL Injection Vulnerability</span>
+</div>
+<span class="bg-error-container text-critical text-[10px] px-sm py-[2px] rounded uppercase font-bold tracking-wider">Blocker</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant leading-relaxed">
+                                Unsanitized input passed to SessionDB query builder in <code class="text-code-sm bg-surface-3 px-1 rounded text-primary">validateToken()</code>. 
+                            </p>
+<div class="flex items-center gap-xs mt-xs">
+<button class="text-label-sm font-label-sm text-primary hover:underline flex items-center gap-[2px]">
+                                    View Trace <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Warning Finding Card -->
+<div class="bg-surface-1 rounded border border-border-subtle border-l-4 border-l-warning p-md flex flex-col gap-sm shadow-sm">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-xs text-warning">
+<span class="material-symbols-outlined text-[18px]">warning</span>
+<span class="text-label-sm font-label-sm font-bold">Deprecated Method Usage</span>
+</div>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant leading-relaxed">
+<code class="text-code-sm bg-surface-3 px-1 rounded text-info">jwt.verify()</code> signature used is deprecated in jsonwebtoken v9.x.
+                            </p>
+</div>
+<!-- Info Finding Card -->
+<div class="bg-surface-1 rounded border border-border-subtle border-l-4 border-l-secondary p-md flex flex-col gap-sm shadow-sm">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-xs text-secondary">
+<span class="material-symbols-outlined text-[18px]">info</span>
+<span class="text-label-sm font-label-sm font-bold">Performance Suggestion</span>
+</div>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant leading-relaxed">
+                                Consider caching valid token hashes in Redis to reduce DB load during high traffic spikes.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Section: Code Diff View -->
+<div class="bg-surface-1 border border-border-subtle rounded-lg overflow-hidden flex flex-col">
+<div class="border-b border-border-subtle p-md bg-surface-2 flex items-center justify-between">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-info text-[20px]">code</span>
+<h3 class="text-label-md font-label-md text-on-surface">src/middleware/auth.ts</h3>
+</div>
+<div class="flex gap-sm text-code-sm font-code-sm">
+<span class="text-[#15803d]">+14</span>
+<span class="text-critical">-3</span>
+</div>
+</div>
+<!-- Code Canvas -->
+<div class="bg-surface-1 p-md overflow-x-auto text-code-md font-code-md leading-loose border-t border-border-subtle">
+<!-- Unchanged Line -->
+<div class="code-grid text-on-surface-variant hover:bg-surface-2/50 px-sm rounded">
+<div class="text-right select-none text-outline-variant">42</div>
+<div class="text-right select-none text-outline-variant">42</div>
+<div class="whitespace-pre"><span class="text-primary">const</span> token = req.headers.authorization?.split(<span class="text-[#15803d]">' '</span>)[<span class="text-[#0369a1]">1</span>];</div>
+</div>
+<!-- Removed Line -->
+<div class="code-grid bg-[#fef2f2] text-[#991b1b] hover:bg-[#fee2e2] px-sm rounded border-l-4 border-[#dc2626]">
+<div class="text-right select-none">43</div>
+<div class="text-right select-none">-</div>
+<div class="whitespace-pre"><span class="text-primary">const</span> session = <span class="text-primary">await</span> db.query(<span class="text-[#15803d]">`SELECT * FROM sessions WHERE token = '${token}'`</span>);</div>
+</div>
+<!-- Added Lines -->
+<div class="code-grid bg-[#f0fdf4] text-[#166534] hover:bg-[#dcfce7] px-sm rounded border-l-4 border-[#16a34a] relative">
+<div class="text-right select-none">-</div>
+<div class="text-right select-none">43</div>
+<div class="whitespace-pre"><span class="text-outline">// Updated to use parameterized query to prevent SQLi</span></div>
+</div>
+<div class="code-grid bg-[#f0fdf4] text-[#166534] hover:bg-[#dcfce7] px-sm rounded border-l-4 border-[#16a34a]">
+<div class="text-right select-none">-</div>
+<div class="text-right select-none">44</div>
+<div class="whitespace-pre"><span class="text-primary">const</span> session = <span class="text-primary">await</span> db.query(<span class="text-[#15803d]">'SELECT * FROM sessions WHERE token = $1'</span>, [token]);</div>
+</div>
+<!-- Inline Annotation -->
+<div class="my-sm mx-xl bg-surface-2 border border-border-subtle rounded p-sm flex gap-sm items-start relative before:content-[''] before:absolute before:-top-[8px] before:left-lg before:border-l-[8px] before:border-r-[8px] before:border-b-[8px] before:border-l-transparent before:border-r-transparent before:border-b-surface-2">
+<img class="w-6 h-6 rounded-full object-cover" data-alt="A small, professional avatar of a female software engineer in her 30s with short dark hair, wearing a dark blue tech hoodie, set against a dark grey studio background. Clean, modern, high-quality corporate headshot style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjEPtjTaR0TJOAIQMPo9QhO1QSlMKF_mNwBZ5adkbbhCnUZW3KSPa80rqwdT9IMB-gG0VVeoVt22UoJmg6Lp6Mlfn8x87h3ZfX5mH56CkMjcgScXxuDsCXaSQ-d1avLFqr0oMYNr7zM8uXsGBX7__Il1a2F7tUrJlJ-8kxIMb0iBhYEXGlPUHXzVlabLOO59UKKAVQzKZ00AOHcO2qPT7vqoXxti73fL2zcqBtbSAWIqgAjU2BNyMvE9QMuwo2bf9iJyPWGkk1ixQ"/>
+<div>
+<div class="flex items-center gap-sm mb-xs">
+<span class="text-label-sm font-label-sm text-primary">Sarah J. (Security)</span>
+<span class="text-[10px] text-info">2 hours ago</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface">Great catch replacing the interpolated string, but we should also check if `token` is undefined before querying to save a DB roundtrip.</p>
+</div>
+</div>
+<!-- Unchanged Line -->
+<div class="code-grid text-on-surface-variant hover:bg-surface-2/50 px-sm rounded mt-xs">
+<div class="text-right select-none text-outline-variant">44</div>
+<div class="text-right select-none text-outline-variant">45</div>
+<div class="whitespace-pre"><span class="text-primary">if</span> (!session) {</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

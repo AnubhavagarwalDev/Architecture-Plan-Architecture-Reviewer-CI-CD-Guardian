@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: architecture_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+
+  neo4j:
+    image: neo4j:5.12.0
+    container_name: architecture_neo4j
+    ports:
+      - "7474:7474" # HTTP/Browser
+      - "7687:7687" # Bolt/Driver
+    environment:
+      - NEO4J_AUTH=neo4j/password # Default credentials (match these in your .env)
+      - NEO4J_apoc_export_file_enabled=true
+      - NEO4J_apoc_import_file_enabled=true
+      - NEO4J_apoc_import_file_use__neo4j__config=true
+    volumes:
+      - neo4j_data:/data
+      - neo4j_logs:/logs
+    restart: unless-stopped
+
+volumes:
+  redis_data:
+  neo4j_data:
+  neo4j_logs:
